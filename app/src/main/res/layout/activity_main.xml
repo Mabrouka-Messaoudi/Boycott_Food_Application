@@ -10,13 +10,21 @@
         android:id="@+id/scanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scan Barcode"
-        android:layout_centerInParent="true"/>
+        android:layout_below="@id/imageViewTop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="225dp"
+        android:background="#4CAF50"
+        android:background="@drawable/backgroung_buttom"
+        android:text="Scan"
+        android:textAllCaps="false"
+
+        android:textColor="#FFFFFF" />
+
     <ImageView
         android:id="@+id/imageViewTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/your_image"
+        android:layout_height="140dp"
+        android:src="@drawable/keffiyeh"
     android:scaleType="centerCrop" />
 
 </RelativeLayout>
