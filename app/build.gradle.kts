@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation ("com.journeyapps:zxing-android-embedded:4.2.0")
+    implementation ("net.sourceforge.zbar.android:zbar:1.9.13")
     implementation ("com.google.zxing:core:3.4.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
