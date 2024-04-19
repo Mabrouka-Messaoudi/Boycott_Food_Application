@@ -1,8 +1,10 @@
-package com.example.boycott_food;
+package com.example.boycott_food.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.boycott_food.R;
 
 public class MainActivity extends AppCompatActivity {
 
