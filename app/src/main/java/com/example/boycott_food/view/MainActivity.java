@@ -1,4 +1,4 @@
-package com.example.boycott_food;
+package com.example.boycott_food.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import com.example.boycott_food.R;
 
 public class MainActivity extends AppCompatActivity {
 
