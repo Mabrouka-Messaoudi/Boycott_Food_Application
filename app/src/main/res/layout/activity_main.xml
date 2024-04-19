@@ -6,18 +6,29 @@
     tools:context=".view.MainActivity">
 
     <!-- Button to initiate barcode scanning -->
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewTop"
+        android:layout_marginTop="57dp"
+        android:text="Welcome to Boycott_Food\nCheck the source of the product before purchasing"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:fontFamily="@font/akaya_telivigala"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/scanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageViewTop"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="225dp"
-        android:background="#4CAF50"
+        android:layout_marginTop="350dp"
         android:background="@drawable/backgroung_buttom"
         android:text="Scan"
         android:textAllCaps="false"
-
         android:textColor="#FFFFFF" />
 
     <ImageView
