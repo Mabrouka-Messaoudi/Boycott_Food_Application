@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.MainActivity">
 
     <!-- Button to initiate barcode scanning -->
@@ -12,22 +13,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewTop"
-        android:layout_marginTop="57dp"
-        android:text="Welcome to Boycott_Food\nCheck the source of the product before purchasing"
+        android:layout_marginTop="69dp"
+        android:fontFamily="@font/akaya_telivigala"
+        android:text="Welcome to Boycott_Food \nPlease, check the product before purchasing"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="25sp"
-        android:fontFamily="@font/akaya_telivigala"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/scanButton"
+        android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="350dp"
-        android:background="@drawable/backgroung_buttom"
+        android:background="@drawable/scan_shape"
         android:text="Scan"
+        android:textSize="25sp"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 
@@ -37,6 +39,17 @@
         android:layout_height="140dp"
         android:src="@drawable/keffiyeh"
     android:scaleType="centerCrop" />
+    <TextView
+        android:id="@+id/product_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" />
+
+
+
 
 </RelativeLayout>
 
