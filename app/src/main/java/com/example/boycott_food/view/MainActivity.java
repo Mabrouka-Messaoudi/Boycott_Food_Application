@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_scan).setOnClickListener(v -> {
             IntentIntegrator integrator = new IntentIntegrator(this);
             integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-            integrator.setPrompt("Scannez un code-barres");
+            integrator.setPrompt("Scan a barcode");
             integrator.setCameraId(0);  // Utiliser la caméra arrière par défaut
-            integrator.setBeepEnabled(false);
+            integrator.setBeepEnabled(true);//beep sound
             integrator.initiateScan();
         });
     }
