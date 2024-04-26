@@ -1,5 +1,4 @@
 package com.example.boycott_food.view;
-
 import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +12,7 @@ import okhttp3.Response;
 public class OpenFoodFactsAPI {
 
     public interface OnProductInfoListener {
-        void onSuccess(String brandName, String productName, String imageUrl);
+        void onSuccess(String brandName, String productName);
         void onFailure(String message);
     }
 
@@ -42,8 +41,8 @@ public class OpenFoodFactsAPI {
                         JSONObject product = json.getJSONObject("product");
                         String brandName = product.optString("brands");
                         String productName = product.optString("product_name");
-                        String imageUrl = "URL de l'image du produit"; // Vous devez récupérer l'URL de l'image du produit à partir de la réponse JSON
-                        listener.onSuccess(brandName, productName, imageUrl);
+
+                        listener.onSuccess(brandName, productName);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         listener.onFailure("Erreur lors de l'analyse de la réponse du serveur");

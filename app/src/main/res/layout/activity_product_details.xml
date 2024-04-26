@@ -35,15 +35,7 @@
         android:textSize="16sp"
         android:textColor="@android:color/black" />
 
-    <!-- Bouton pour scanner à nouveau -->
-    <Button
-        android:id="@+id/scan_again_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/product_name_text_view"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Retour" />
+
 
 </RelativeLayout>
 
