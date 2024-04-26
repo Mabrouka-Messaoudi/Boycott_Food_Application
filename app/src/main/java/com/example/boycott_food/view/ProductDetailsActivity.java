@@ -21,17 +21,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         if (extras != null) {
             String brandName = extras.getString("brandName");
             String productName = extras.getString("productName");
-            String imageUrl = extras.getString("imageUrl"); // URL de l'image du produit
-
             // Afficher les données du produit dans les vues appropriées
             TextView brandNameTextView = findViewById(R.id.brand_name_text_view);
             TextView productNameTextView = findViewById(R.id.product_name_text_view);
             brandNameTextView.setText("Brand : " + brandName);
             productNameTextView.setText("Product Name: " + productName);
 
-            // Charger l'image du produit depuis l'URL avec Picasso
-            ImageView productImageView = findViewById(R.id.product_image);
-            Picasso.get().load(imageUrl).into(productImageView);
+
         }
     }
 

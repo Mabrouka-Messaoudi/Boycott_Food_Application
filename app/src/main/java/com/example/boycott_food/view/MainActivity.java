@@ -50,12 +50,11 @@ public class MainActivity extends AppCompatActivity {
                 OpenFoodFactsAPI api = new OpenFoodFactsAPI(); // Creating an instance of OpenFoodFactsAPI
                 api.getProductInformation(this, barcode, new OpenFoodFactsAPI.OnProductInfoListener() {
                     @Override
-                    public void onSuccess(String brandName, String productName, String imageUrl) {
+                    public void onSuccess(String brandName, String productName) {
                         // Creating an Intent to launch the ProductDetailsActivity and passing product data
                         Intent intent = new Intent(MainActivity.this, ProductDetailsActivity.class);
                         intent.putExtra("brandName", brandName);
                         intent.putExtra("productName", productName);
-                        intent.putExtra("imageUrl", imageUrl);
                         startActivity(intent); // Starting the ProductDetailsActivity
                     }
 
