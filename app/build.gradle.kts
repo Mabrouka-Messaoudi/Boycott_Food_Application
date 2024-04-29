@@ -48,4 +48,8 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.9.0")
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation ("com.google.firebase:firebase-analytics:20.0.0")
+    implementation ("com.google.firebase:firebase-database:20.0.0")
+
+
 }
