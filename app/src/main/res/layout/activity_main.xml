@@ -7,38 +7,119 @@
     tools:context=".view.MainActivity">
 
     <!-- Button to initiate barcode scanning -->
-
     <TextView
         android:id="@+id/welcomeText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewTop"
-        android:layout_marginTop="69dp"
+        android:layout_marginTop="21dp"
         android:fontFamily="@font/akaya_telivigala"
-        android:text="Welcome to Boycott_Food \nPlease, check the product before purchasing"
+        android:text="Welcome to Boycott Food "
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/SuiteText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewTop"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/akaya_telivigala"
+        android:text="Please, check the product before purchasing"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/image_bar"
+        android:layout_width="200dp"
+        android:layout_height="105dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="235dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bar_code"
+        android:background="@color/white"/>
+    <TextView
+        android:id="@+id/OrText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewTop"
+        android:layout_marginTop="280dp"
+        android:fontFamily="@font/akaya_telivigala"
+        android:text="OR"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
 
     <Button
         android:id="@+id/btn_scan"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="350dp"
-        android:background="@drawable/scan_shape"
-        android:text="Scan"
-        android:textSize="25sp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/scan_button_background"
+        android:fontFamily="@font/akaya_telivigala"
+        android:text="Scan Code"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
+        android:textColor="#000000"
+        android:textSize="25sp" />
 
     <ImageView
         android:id="@+id/imageViewTop"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:src="@drawable/keffiyeh"
-    android:scaleType="centerCrop" />
+        android:scaleType="centerCrop" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/OrText"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/barcodeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/scan_button_background"
+            android:hint="Enter Barcode"
+            android:textStyle="bold"
+            android:fontFamily="@font/akaya_telivigala"
+            android:padding="10dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="16dp"
+            />
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/add_btn"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/akaya_telivigala"/>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/navigation_bar"
+        layout="@layout/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"/>
 
 
 </RelativeLayout>
