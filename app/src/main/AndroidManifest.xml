@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.boycott_food">
 
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -27,7 +30,13 @@
         </activity>
         <activity
 
-            android:name=".view.ProductDetailsActivity" />
+            android:name=".view.ProductDetailsActivity"
+            android:exported="false"/>
+        <activity
+
+            android:name=".view.HistoryActivity"
+            android:exported="false"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -35,10 +44,8 @@
 
 
     <!-- Add the CAMERA permission -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.INTERNET" />
+
+
 
 
 </manifest>
