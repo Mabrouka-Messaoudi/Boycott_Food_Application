@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.boycott_food">
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,15 +30,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:exported="false"
-            android:name=".view.ProductDetailsActivity" />
+
+
+
+            android:name=".view.ProductDetailsActivity"
+            android:exported="false"/>
+        <activity
+
+            android:name=".view.HistoryActivity"
+            android:exported="false"/>
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
     <!-- Add the CAMERA permission -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.INTERNET" />
+
+
+
+
+
+
+
+
 </manifest>

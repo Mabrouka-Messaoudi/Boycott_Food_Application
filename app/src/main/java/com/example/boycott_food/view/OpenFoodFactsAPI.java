@@ -1,8 +1,13 @@
+// OpenFoodFactsAPI.java
 package com.example.boycott_food.view;
+
 import android.content.Context;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -13,6 +18,7 @@ public class OpenFoodFactsAPI {
 
     public interface OnProductInfoListener {
         void onSuccess(String brandName, String productName);
+
         void onFailure(String message);
     }
 
@@ -29,7 +35,7 @@ public class OpenFoodFactsAPI {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                listener.onFailure("Erreur lors de la récupération des informations du produit");
+                listener.onFailure("Error getting product information");
             }
 
             @Override
@@ -45,10 +51,10 @@ public class OpenFoodFactsAPI {
                         listener.onSuccess(brandName, productName);
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        listener.onFailure("Erreur lors de l'analyse de la réponse du serveur");
+                        listener.onFailure("Error parsing server response");
                     }
                 } else {
-                    listener.onFailure("Code-barres non trouvé");
+                    listener.onFailure("Barcode not found");
                 }
             }
         });
