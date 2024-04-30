@@ -9,7 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    private TextView boycottStatusTextView;
+    private TextView brandNameTextView;
+    private TextView productNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +18,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
 
         // Find TextViews by their IDs
-        TextView brandNameTextView = findViewById(R.id.brand_name_text_view);
-        TextView productNameTextView = findViewById(R.id.product_name_text_view);
-        //boycottStatusTextView = findViewById(R.id.boycott_status_text_view);
+        brandNameTextView = findViewById(R.id.brand_name_text_view);
+        productNameTextView = findViewById(R.id.product_name_text_view);
 
         // Get the intent that started this activity
         Intent intent = getIntent();
@@ -29,23 +29,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String productName = intent.getStringExtra("productName");
 
         // Set the text of TextViews with the received data
-        brandNameTextView.setText(brandName);
-        productNameTextView.setText(productName);
-
-        // Get the boycotted status from the intent
-        boolean isBoycotted = intent.getBooleanExtra("isBoycotted", false);
-
-        // Display the boycotted status
-        displayBoycottStatus(isBoycotted);
-    }
-
-    private void displayBoycottStatus(boolean boycotted) {
-        if (boycotted) {
-            // Brand is boycotted
-            boycottStatusTextView.setText("Boycotted");
-        } else {
-            // Brand is not boycotted
-            boycottStatusTextView.setText("Not boycotted");
+        if (brandName != null) {
+            brandNameTextView.setText(brandName);
+        }
+        if (productName != null) {
+            productNameTextView.setText(productName);
         }
     }
 }
