@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    private TextView brandNameTextView;
-    private TextView productNameTextView;
     private TextView boycottStatusTextView;
 
     @Override
@@ -19,8 +17,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
 
         // Find TextViews by their IDs
-        brandNameTextView = findViewById(R.id.brand_name_text_view);
-        productNameTextView = findViewById(R.id.product_name_text_view);
+        TextView brandNameTextView = findViewById(R.id.brand_name_text_view);
+        TextView productNameTextView = findViewById(R.id.product_name_text_view);
         //boycottStatusTextView = findViewById(R.id.boycott_status_text_view);
 
         // Get the intent that started this activity

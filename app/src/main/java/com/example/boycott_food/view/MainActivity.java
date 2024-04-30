@@ -70,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Brand exists in the database (boycotted)
-                    startProductDetailsActivity(brandName, true); // Pass boycotted status as true
-                } else {
+                    startProductDetailsActivity(brandName, true);
+                }// Pass boycotted status as true
+                else {
                     // Brand doesn't exist in the database (not boycotted)
                     startProductDetailsActivity(brandName, false); // Pass boycotted status as false
                 }
