@@ -50,6 +50,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation ("com.google.firebase:firebase-analytics:21.6.2")
     implementation ("com.google.firebase:firebase-database:20.3.1")
+    implementation ("gle.firebase:firebase-auth")
 
 
 }
