@@ -36,7 +36,7 @@ dependencies {
     // ZXing dependencies
 
     implementation ("com.google.zxing:core:3.4.1")
-    implementation ("com.journeyapps:zxing-android-embedded:4.2.0") // Cette dépendance est pour l'intégration Android
+    implementation ("com.journeyapps:zxing-android-embedded:4.2.0")
     implementation ("com.google.zxing:zxing-parent:3.4.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -48,7 +48,6 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.9.0")
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
-    implementation ("com.google.firebase:firebase-analytics:20.0.0")
     implementation ("com.google.firebase:firebase-database:20.0.0")
 
 
