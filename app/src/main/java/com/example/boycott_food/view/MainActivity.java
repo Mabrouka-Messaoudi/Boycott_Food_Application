@@ -1,23 +1,27 @@
-// MainActivity.java
 package com.example.boycott_food.view;
-
+import com.example.boycott_food.R;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.boycott_food.R;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
         findViewById(R.id.btn_scan).setOnClickListener(v -> {
             IntentIntegrator integrator = new IntentIntegrator(this);
@@ -27,6 +31,18 @@ public class MainActivity extends AppCompatActivity {
             integrator.setBeepEnabled(true);
             integrator.initiateScan();
         });
+
+        Log.d("onCreate", "***********************End");
+
+    }
+
+
+    private void startProductDetailsActivity(String brandName, String productName) {
+        Intent intent = new Intent(MainActivity.this, ProductDetailsActivity.class);
+        intent.putExtra("brandName", brandName);
+        intent.putExtra("productName", productName);
+
+        startActivity(intent);
     }
 
     @Override
@@ -39,20 +55,27 @@ public class MainActivity extends AppCompatActivity {
                 OpenFoodFactsAPI api = new OpenFoodFactsAPI();
                 api.getProductInformation(this, barcode, new OpenFoodFactsAPI.OnProductInfoListener() {
                     @Override
+                   
                     public void onSuccess(String brandName, String productName) {
-                        // Start the ProductDetailsActivity and pass product data
+                        // Start ProductDetailsActivity with the product information as intent extras
                         Intent intent = new Intent(MainActivity.this, ProductDetailsActivity.class);
                         intent.putExtra("brandName", brandName);
                         intent.putExtra("productName", productName);
-                        startActivity(intent);
+                        startActivity(intent); // Add this line to start the activity
                     }
+
 
                     @Override
                     public void onFailure(String message) {
-                        runOnUiThread(() -> Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show());
+                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         }
     }
+
+
+
+
+
 }
