@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkBoycottStatus(String brandName, String productName) {
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.i("onDataChange", "*********************** onDataChange" + brandName + "  " + productName);
+        ValueEventListener postListener = new ValueEventListener() {
 
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i("onDataChange", "*********************** onDataChange" + brandName + "  " + productName);
                 // Log retrieved data
                 Log.d("Firebase", "onDataChange : DataSnapshot: " + dataSnapshot.getValue());
 
@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 startProductDetailsActivity(brandName, productName, boycotted);
                 Log.i("startProductDetailsActivity", "*********************** startProductDetailsActivity" + brandName + "  " + productName + " --> "+ boycotted);
-
-
             }
 
             @Override
@@ -103,7 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Firebase", "Error querying database: " + databaseError.getMessage());
                 // Display an error message to the user if needed
             }
-        });
-
+        };
+        mDatabase.addListenerForSingleValueEvent(postListener);
     }
+
+
+
 }
