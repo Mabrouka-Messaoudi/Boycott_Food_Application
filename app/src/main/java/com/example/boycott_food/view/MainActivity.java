@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -76,34 +76,43 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkBoycottStatus(String brandName, String productName) {
         ValueEventListener postListener = new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.i("onDataChange", "*********************** onDataChange" + brandName + "  " + productName);
                 // Log retrieved data
-                Log.d("Firebase", "onDataChange : DataSnapshot: " + dataSnapshot.getValue());
+                Log.d("Firebase", "onDataChange: DataSnapshot: " + dataSnapshot.getValue());
 
                 boolean boycotted = false;
-                for (DataSnapshot brandSnapshot : dataSnapshot.getChildren()) {
-                    String dbBrandName = brandSnapshot.getValue(String.class);
-                    if (dbBrandName != null && dbBrandName.equals(brandName)) {
-                        boycotted = true;
-                        break;
+
+                // Check if there's any data at all
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot brandSnapshot : dataSnapshot.getChildren()) {
+                        String dbBrandName = brandSnapshot.getValue(String.class);
+                        if (dbBrandName != null && dbBrandName.equals(brandName)) {
+                            boycotted = true;
+                            break;
+                        }
                     }
+                } else {
+                    // Handle the case where no data exists (optional)
+                    Log.w("Firebase", "No boycott data found");
                 }
+
                 startProductDetailsActivity(brandName, productName, boycotted);
-                Log.i("startProductDetailsActivity", "*********************** startProductDetailsActivity" + brandName + "  " + productName + " --> "+ boycotted);
+                Log.i("startProductDetailsActivity", "*********************** startProductDetailsActivity" + brandName + " " + productName + " --> " + boycotted);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Log error message
-                Log.e("Firebase", "Error querying database: " + databaseError.getMessage());
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting data failed, log a message
+                Log.e("Firebase", "loadData:onCancelled", databaseError.toException());
                 // Display an error message to the user if needed
             }
         };
+
         mDatabase.addListenerForSingleValueEvent(postListener);
     }
+
 
 
 
