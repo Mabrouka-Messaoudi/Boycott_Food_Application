@@ -12,24 +12,28 @@
         android:layout_height="wrap_content"
         android:src="@drawable/barcode_scan"
         android:background="?attr/selectableItemBackgroundBorderless"
-         />
+        android:contentDescription="Scan Button" />
 
     <ImageButton
         android:id="@+id/list_button"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_history"
+
+        android:src="@drawable/list_interface"
         android:background="?attr/selectableItemBackgroundBorderless"
-         />
+        android:contentDescription="List Button"
+        android:minHeight="48dp"/>
 
     <ImageButton
         android:id="@+id/history_button"
-        android:layout_width="0dp"
+        android:layout_width="1dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:src="@drawable/list_interface"
+        android:src="@drawable/baseline_history"
         android:background="?attr/selectableItemBackgroundBorderless"
-        />
+        android:contentDescription="History Button"
+        android:minHeight="48dp"/>
+
 
 </LinearLayout>
