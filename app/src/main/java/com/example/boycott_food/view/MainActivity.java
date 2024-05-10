@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ImageButton historyButton = findViewById(R.id.history_button);
+        setupNavigationBarClicks(historyButton);
         // Set a click listener for the button
 
         // Initialize DatabaseHelper instance
@@ -139,7 +140,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    private void setupNavigationBarClicks(ImageButton historyButton) {
+        Log.i("onCreate", "***********start");
+        historyButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(intent);
+                Log.i("onCreate", "***********************button");
+
+
+            }
+        });
+
+    }
     private void addBrand(String brandName) {
         // Call the addBrand method of DatabaseHelper
         databaseHelper.addBrand(brandName);
