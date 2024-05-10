@@ -39,6 +39,9 @@
 
             android:name=".view.HistoryActivity"
             android:exported="false"/>
+        <activity
+            android:name=".view.BrandListActivity"
+            android:exported="false"/>
 
 
         <meta-data

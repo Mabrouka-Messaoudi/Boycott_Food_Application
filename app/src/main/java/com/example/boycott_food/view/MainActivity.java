@@ -3,6 +3,9 @@ import com.example.boycott_food.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Add brand names to the database
 
-        addBrand("Saida");
+
         addBrand("7days");
         addBrand("7up");
         addBrand("activia");
@@ -117,12 +120,9 @@ public class MainActivity extends AppCompatActivity {
         addBrand("starbucks");
         addBrand("tuc");
         addBrand("twix");
-        addBrand("warda");
         addBrand("pringles");
         addBrand("sicam");
         addBrand("lotus");
-        addBrand("saida");
-        addBrand("said");
         addBrand("ferrero rocher");
         addBrand("punch");
         addBrand("apla");
@@ -131,6 +131,16 @@ public class MainActivity extends AppCompatActivity {
         addBrand("crestalin");
         addBrand("safia");
         addBrand("marwa");
+        ImageButton listButton = findViewById(R.id.list_button);
+
+        // Set a click listener for the button
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start BrandListActivity when the button is clicked
+                startActivity(new Intent(MainActivity.this, BrandListActivity.class));
+            }
+        });
         // Add more brand names as needed
     }
 

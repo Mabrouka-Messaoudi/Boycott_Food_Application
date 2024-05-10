@@ -22,13 +22,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         ImageButton scanButton = findViewById(R.id.scan_button);
+        ImageButton historyButton = findViewById(R.id.history_button);
 
         // Initialize TextViews
         brandNameTextView = findViewById(R.id.brand_name_text_view);
         productNameTextView = findViewById(R.id.product_name_text_view);
 
         boycottedStatusTextView = findViewById(R.id.boycott_status_text_view);
-        setupNavigationBarClicks(scanButton);
+        setupNavigationBarClicks(scanButton,historyButton);
+
 
         // Get intent data
         Intent intent = getIntent();
@@ -56,7 +58,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void setupNavigationBarClicks(ImageButton scanButton) {
+    private void setupNavigationBarClicks(ImageButton scanButton,ImageButton historyButton) {
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,5 +68,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 }
 }
