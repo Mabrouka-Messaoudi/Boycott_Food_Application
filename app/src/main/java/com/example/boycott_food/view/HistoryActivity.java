@@ -1,60 +1,96 @@
 package com.example.boycott_food.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boycott_food.R;
 
-
-
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    private ListView historyListView;
-    private SharedPreferences sharedPreferences;
+    private static final String PREF_KEY_HISTORY = "scanned_products";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        historyListView = findViewById(R.id.history_list_view);
-        sharedPreferences = getSharedPreferences("scanned_products", MODE_PRIVATE);
+        // Retrieve scanned product data from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_KEY_HISTORY, MODE_PRIVATE);
+        String history = sharedPreferences.getString(PREF_KEY_HISTORY, "");
 
-        // Cast allEntries to the expected type (Map<String, String>)
-        Map<String, String> allEntries = (Map<String, String>) sharedPreferences.getAll();
+        // Parse history string into individual product entries
+        List<ProductData> productList = new ArrayList<>();
+        if (!history.isEmpty()) {
+            // Regex pattern to extract brand, product, and boycott status
+            Pattern pattern = Pattern.compile("(?:Brand: )?(.*?),(?: Product: )?(.*?),(?: Boycotted: )?(.*?)(?:\n|$)");
+            Matcher matcher = pattern.matcher(history);
 
-        List<Product> scannedProducts = loadScannedProducts(allEntries); // Pass allEntries directly
+            while (matcher.find()) {
+                String brand = matcher.group(1);
+                String product = matcher.group(2);
+                boolean boycotted = "true".equalsIgnoreCase(matcher.group(3));
 
-        // ... rest of the code to create and set adapter ...
-    }
-
-    private List<Product> loadScannedProducts(Map<String, String> allEntries) {
-        List<Product> products = new ArrayList<>();
-
-        for (Map.Entry<String, String> entry : allEntries.entrySet()) {
-            if (entry.getKey().equals("productName")) {
-                String productName = entry.getValue();
-                String brandName = sharedPreferences.getString("brandName", "");
-                boolean boycottStatus = sharedPreferences.getBoolean("boycottStatus", false); // Get boycott status
-                products.add(new Product(productName, brandName, boycottStatus));
+                productList.add(new ProductData(brand, product, boycotted));
             }
         }
 
-        return products;
+        // Set up ListView
+        ListView historyListView = findViewById(R.id.history_list_view);
+        ProductListAdapter adapter = new ProductListAdapter(this, productList);
+        historyListView.setAdapter(adapter);
     }
 
+    // ProductData class to hold parsed product information
+    private static class ProductData {
+        String brand;
+        String product;
+        boolean boycotted;
 
+        public ProductData(String brand, String product, boolean boycotted) {
+            this.brand = brand;
+            this.product = product;
+            this.boycotted = boycotted;
+        }
+    }
+
+    // ProductListAdapter class to customize item display in ListView
+    private class ProductListAdapter extends ArrayAdapter<ProductData> {
+
+        public ProductListAdapter(Context context, List<ProductData> products) {
+            super(context, R.layout.history_item, products);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ProductData product = getItem(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.history_item, parent, false);
+            }
+
+            TextView brandTextView = convertView.findViewById(R.id.textViewBrand);
+            TextView productTextView = convertView.findViewById(R.id.textViewProductName);
+            TextView boycottTextView = convertView.findViewById(R.id.textViewBoycott);
+
+            brandTextView.setText(product.brand);
+            productTextView.setText(product.product);
+            boycottTextView.setText(product.boycotted ? "Boycotté" : "Non boycotté");
+
+            return convertView;
+        }
+    }
 }
-

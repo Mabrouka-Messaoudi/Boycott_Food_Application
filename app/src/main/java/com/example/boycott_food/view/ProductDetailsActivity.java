@@ -11,21 +11,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boycott_food.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProductDetailsActivity extends AppCompatActivity {
 
     private TextView brandNameTextView;
     private TextView productNameTextView;
     private TextView boycottedStatusTextView;
-    private SharedPreferences sharedPreferences;
+
+    private static final String PREF_KEY_HISTORY = "scanned_products";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
-
         ImageButton scanButton = findViewById(R.id.scan_button);
 
         // Initialize TextViews
@@ -33,29 +30,32 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productNameTextView = findViewById(R.id.product_name_text_view);
         boycottedStatusTextView = findViewById(R.id.boycott_status_text_view);
 
-        sharedPreferences = getSharedPreferences("scanned_products", MODE_PRIVATE);
-
         setupNavigationBarClicks(scanButton);
 
-        // Get intent data
+        // Get intent data (optional)
         Intent intent = getIntent();
-        String brandName = intent.getStringExtra("brandName");
-        String productName = intent.getStringExtra("productName");
-        boolean boycotted = intent.getBooleanExtra("boycotted", false);
+        if (intent != null) {
+            String brandName = intent.getStringExtra("brandName");
+            String productName = intent.getStringExtra("productName");
+            boolean boycotted = intent.getBooleanExtra("boycotted", false);
 
-        // Set TextViews with data
-        if (brandName != null) {
-            brandNameTextView.setText(brandName);
-        }
-        if (productName != null) {
-            productNameTextView.setText(productName);
-        }
+            // Set TextViews with data
+            if (brandName != null) {
+                brandNameTextView.setText(brandName);
+            }
+            if (productName != null) {
+                productNameTextView.setText(productName);
+            }
 
-        // Set boycotted status
-        if (boycotted) {
-            boycottedStatusTextView.setText("This brand is boycotted.");
-        } else {
-            boycottedStatusTextView.setText("This brand is not boycotted.");
+            // Set boycotted status
+            if (boycotted) {
+                boycottedStatusTextView.setText("This brand is boycotted.");
+            } else {
+                boycottedStatusTextView.setText("This brand is not boycotted.");
+            }
+
+            // Save scanned product data (optional)
+            saveScannedProduct(brandName, productName, boycotted);
         }
     }
 
@@ -63,22 +63,21 @@ public class ProductDetailsActivity extends AppCompatActivity {
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Save scanned product
-                String productName = productNameTextView.getText().toString();
-                String brandName = brandNameTextView.getText().toString();
-                saveScannedProduct(productName, brandName);
-
-                // Launch MainActivity
+                // Code for handling scan button click (launch MainActivity or other)
                 Intent intent = new Intent(ProductDetailsActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void saveScannedProduct(String productName, String brandName) {
+    private void saveScannedProduct(String brandName, String productName, boolean boycotted) {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_KEY_HISTORY, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("productName", productName);
-        editor.putString("brandName", brandName);
-        editor.apply();
+
+        // Append scanned product data to existing history (modify as needed)
+        String existingHistory = sharedPreferences.getString(PREF_KEY_HISTORY, "");
+        String newProductData = "\nBrand: " + brandName + ", Product: " + productName + ", Boycotted: " + boycotted;
+        editor.putString(PREF_KEY_HISTORY, existingHistory + newProductData);
+        editor.apply(); // Use apply() for asynchronous saving
     }
 }
