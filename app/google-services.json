@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "109850706057",
-    "project_id": "boycott-app-d0c36",
-    "storage_bucket": "boycott-app-d0c36.appspot.com"
+    "project_number": "947431695143",
+    "project_id": "boycott-958e3",
+    "storage_bucket": "boycott-958e3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:109850706057:android:cfcaba9248a849c6810658",
+        "mobilesdk_app_id": "1:947431695143:android:a92bf8dce629055c3c3f02",
         "android_client_info": {
           "package_name": "com.example.boycott_food"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBn1rqUyUxRtSJRDuLwDA79hZ3TE6SV2gE"
+          "current_key": "AIzaSyCNu7ZGIb_z78sEsy_Ax2dc3hGuvaJGpec"
         }
       ],
       "services": {

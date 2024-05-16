@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.Button;
+=======
+>>>>>>> 7260b189f546f69efdff9f751c298fae75e928ce
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -27,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ImageButton historyButton = findViewById(R.id.history_button);
+        setupNavigationBarClicks(historyButton);
+        // Set a click listener for the button
 
         // Initialize DatabaseHelper instance
         databaseHelper = new DatabaseHelper(this);
@@ -142,8 +147,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // Add more brand names as needed
-    }
 
+
+
+    }
+    private void setupNavigationBarClicks(ImageButton historyButton) {
+        Log.i("onCreate", "***********start");
+        historyButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(intent);
+                Log.i("onCreate", "***********************button");
+
+
+            }
+        });
+
+    }
     private void addBrand(String brandName) {
         // Call the addBrand method of DatabaseHelper
         databaseHelper.addBrand(brandName);
@@ -195,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
 
 
