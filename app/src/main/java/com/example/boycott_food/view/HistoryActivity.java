@@ -1,12 +1,15 @@
 package com.example.boycott_food.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,7 +30,9 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-
+        ImageButton scanButton = findViewById(R.id.scan_button);
+        ImageButton listButton = findViewById(R.id.list_button);
+        setupNavigationBarClicks(scanButton,listButton);
         // Retrieve scanned product data from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(PREF_KEY_HISTORY, MODE_PRIVATE);
         String history = sharedPreferences.getString(PREF_KEY_HISTORY, "");
@@ -53,7 +58,28 @@ public class HistoryActivity extends AppCompatActivity {
         ProductListAdapter adapter = new ProductListAdapter(this, productList);
         historyListView.setAdapter(adapter);
     }
+    private void setupNavigationBarClicks(ImageButton scanButton,ImageButton listButton) {
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Code for handling scan button click (launch MainActivity or other)
+                Intent intent = new Intent(HistoryActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        listButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, BrandListActivity.class);
+                startActivity(intent);
+                Log.i("onCreate", "***********************button");
+
+
+            }
+        });
+
+    }
     // ProductData class to hold parsed product information
     private static class ProductData {
         String brand;
@@ -88,7 +114,7 @@ public class HistoryActivity extends AppCompatActivity {
 
             brandTextView.setText(product.brand);
             productTextView.setText(product.product);
-            boycottTextView.setText(product.boycotted ? "Boycotté" : "Non boycotté");
+            boycottTextView.setText(product.boycotted ? "Boycotted" : "Not boycotted");
 
             return convertView;
         }

@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "boycott_food.db";
@@ -36,14 +39,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
     public boolean isBrandBoycotted(String brandName) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_BRANDS, new String[]{COLUMN_BRAND_NAME}, COLUMN_BRAND_NAME + "=?",
-                new String[]{brandName}, null, null, null);
-        boolean boycotted = cursor.getCount() > 0;
-        cursor.close();
-        db.close();
+        String[] brandParts = brandName.split(","); // Split brand name at commas
+        boolean boycotted = false;
+
+        for (String part : brandParts) { // Iterate over brand parts
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.query(TABLE_BRANDS, new String[]{COLUMN_BRAND_NAME},
+                    COLUMN_BRAND_NAME + " LIKE ?",
+                    new String[]{part + "%"}, null, null, null); // Use wildcard search for each part
+            if (cursor.getCount() > 0) {
+                boycotted = true;
+                break; // Stop searching if any part is boycotted
+            }
+            cursor.close();
+            db.close();
+        }
+
         return boycotted;
     }
+
+
+    public List<String> getAllBrands() {
+        List<String> brandList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Query the brands table to retrieve all brand names
+        Cursor cursor = db.query(TABLE_BRANDS, new String[]{COLUMN_BRAND_NAME}, null,
+                null, null, null, null);
+
+        // Check if the cursor is not null and has at least one row
+        if (cursor != null && cursor.moveToFirst()) {
+            // Get the index of the brand name column
+            int brandNameIndex = cursor.getColumnIndex(COLUMN_BRAND_NAME);
+
+            // Iterate over the cursor to extract brand names
+            do {
+                // Retrieve the brand name from the cursor using its index
+                String brandName = cursor.getString(brandNameIndex);
+                brandList.add(brandName);
+            } while (cursor.moveToNext());
+
+            // Close the cursor
+            cursor.close();
+        }
+
+        // Close the database connection
+        db.close();
+
+        return brandList;
+    }
+
 
 
 

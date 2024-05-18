@@ -48,42 +48,44 @@
             android:fontFamily="@font/akaya_telivigala"/>
 
     </LinearLayout>
+
+    <!-- Ligne de séparation -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="100dp"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/brand_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:layout_alignParentLeft="true"
             android:layout_below="@id/imageViewTop"
-            android:text="Brand Name"
-            android:layout_marginEnd="19dp"
+            android:layout_alignParentLeft="true"
             android:layout_marginStart="15dp"
-            android:fontFamily="@font/akaya_telivigala"/>
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="19dp"
+            android:fontFamily="@font/akaya_telivigala"
+            android:text="Brand Name"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/brand_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:layout_alignParentLeft="true"
             android:layout_below="@id/imageViewTop"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="200dp"
             android:background="@drawable/display"
             android:fontFamily="@font/akaya_telivigala"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
-    <!-- Ligne de séparation -->
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
@@ -98,30 +100,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/divider"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp"
-        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textColor="#EF0707"
 
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="200dp"
 
         android:fontFamily="@font/akaya_telivigala"/>
 
 
     <!-- Nom de la marque -->
 
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/scan_button_background"
-        android:fontFamily="@font/akaya_telivigala"
-        android:text="add history"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="25sp" />
 
 
     <include

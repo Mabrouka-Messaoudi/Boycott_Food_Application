@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageButton historyButton = findViewById(R.id.history_button);
-        setupNavigationBarClicks(historyButton);
+        ImageButton listButton = findViewById(R.id.list_button);
+        setupNavigationBarClicks(historyButton,listButton);
         // Set a click listener for the button
 
         // Initialize DatabaseHelper instance
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Add brand names to the database
 
-        addBrand("Saida");
+
         addBrand("7days");
         addBrand("7up");
         addBrand("activia");
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         addBrand("delicious");
         addBrand("doritos");
         addBrand("délice");
-        addBrand("président");
+        addBrand("president");
         addBrand("nescafé");
         addBrand("maxwell house");
         addBrand("sprite");
@@ -125,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
         addBrand("pringles");
         addBrand("sicam");
         addBrand("lotus");
-        addBrand("saida");
-        addBrand("said");
         addBrand("ferrero rocher");
         addBrand("punch");
         addBrand("apla");
@@ -140,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private void setupNavigationBarClicks(ImageButton historyButton) {
+    private void setupNavigationBarClicks(ImageButton historyButton,ImageButton listButton) {
         Log.i("onCreate", "***********start");
         historyButton.setOnClickListener(new View.OnClickListener() {
 
@@ -153,8 +152,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        listButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BrandListActivity.class);
+                startActivity(intent);
+                Log.i("onCreate", "***********************button");
+
+
+            }
+        });
 
     }
+
     private void addBrand(String brandName) {
         // Call the addBrand method of DatabaseHelper
         databaseHelper.addBrand(brandName);
@@ -168,11 +179,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         startActivity(intent);
+        Log.i("onActivityResult", "***********************end activity");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.i("onCreate", "***********************api");
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             String barcode = result.getContents();
@@ -184,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(String brandName, String productName) {
 
                         DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
-                        boolean boycotted = databaseHelper.isBrandBoycotted(brandName);
+                        boolean boycotted = databaseHelper.isBrandBoycotted(brandName );
                         brandName = brandName.toLowerCase();
 
                         Intent intent = new Intent(MainActivity.this, ProductDetailsActivity.class);
@@ -204,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+            Log.i("onActivityResult", "***********************end api");
         }
     }
 
