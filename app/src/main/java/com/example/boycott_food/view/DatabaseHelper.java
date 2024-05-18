@@ -56,9 +56,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return boycotted;
+
     }
-
-
     public List<String> getAllBrands() {
         List<String> brandList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -88,6 +87,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return brandList;
     }
+
+
+
+
 
 
 

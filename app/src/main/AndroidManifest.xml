@@ -37,7 +37,17 @@
         </activity>
         <activity
             android:name=".view.ProductDetailsActivity"
-            android:exported="false" />
+
+            android:exported="false"/>
+        <activity
+            android:name=".view.HistoryActivity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".view.BrandListActivity"
+            android:exported="false"/>
+
+
 
         <meta-data
             android:name="preloaded_fonts"

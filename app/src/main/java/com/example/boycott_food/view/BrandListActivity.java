@@ -1,10 +1,12 @@
 package com.example.boycott_food.view;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,9 +26,11 @@ public class BrandListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brand_list);
+
         ImageButton historyButton = findViewById(R.id.history_button);
         ImageButton scanButton = findViewById(R.id.scan_button);
         setupNavigationBarClicks(historyButton,scanButton);
+
 
 
         // Initialize RecyclerView
@@ -43,6 +47,7 @@ public class BrandListActivity extends AppCompatActivity {
         brandAdapter = new BrandAdapter(brandList);
         brandRecyclerView.setAdapter(brandAdapter);
     }
+
 
 
     private void setupNavigationBarClicks(ImageButton historyButton,ImageButton scanButton) {
@@ -70,3 +75,4 @@ public class BrandListActivity extends AppCompatActivity {
     }
 
 }
+

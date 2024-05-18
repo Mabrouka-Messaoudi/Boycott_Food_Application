@@ -26,13 +26,20 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
         ImageButton scanButton = findViewById(R.id.scan_button);
         ImageButton historyButton = findViewById(R.id.history_button);
+
         ImageButton listButton = findViewById(R.id.list_button);
+
         // Initialize TextViews
         brandNameTextView = findViewById(R.id.brand_name_text_view);
         productNameTextView = findViewById(R.id.product_name_text_view);
         boycottedStatusTextView = findViewById(R.id.boycott_status_text_view);
 
+
         setupNavigationBarClicks(scanButton,historyButton ,listButton);
+
+
+
+
 
         // Get intent data (optional)
         Intent intent = getIntent();
@@ -63,7 +70,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
     }
 
+
     private void setupNavigationBarClicks(ImageButton scanButton,ImageButton historyButton,ImageButton listButton) {
+
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +81,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         historyButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -83,6 +93,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
             }
         });
+
         listButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -94,6 +105,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void saveScannedProduct(String brandName, String productName, boolean boycotted) {
@@ -106,4 +118,5 @@ public class ProductDetailsActivity extends AppCompatActivity {
         editor.putString(PREF_KEY_HISTORY, existingHistory + newProductData);
         editor.apply(); // Use apply() for asynchronous saving
     }
+
 }

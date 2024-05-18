@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -122,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         addBrand("starbucks");
         addBrand("tuc");
         addBrand("twix");
-        addBrand("warda");
         addBrand("pringles");
         addBrand("sicam");
         addBrand("lotus");
@@ -134,6 +134,17 @@ public class MainActivity extends AppCompatActivity {
         addBrand("crestalin");
         addBrand("safia");
         addBrand("marwa");
+
+
+
+        // Set a click listener for the button
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start BrandListActivity when the button is clicked
+                startActivity(new Intent(MainActivity.this, BrandListActivity.class));
+            }
+        });
         // Add more brand names as needed
 
 

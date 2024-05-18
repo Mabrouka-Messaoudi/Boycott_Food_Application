@@ -31,8 +31,10 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         ImageButton scanButton = findViewById(R.id.scan_button);
+
         ImageButton listButton = findViewById(R.id.list_button);
         setupNavigationBarClicks(scanButton,listButton);
+
         // Retrieve scanned product data from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(PREF_KEY_HISTORY, MODE_PRIVATE);
         String history = sharedPreferences.getString(PREF_KEY_HISTORY, "");
@@ -58,7 +60,9 @@ public class HistoryActivity extends AppCompatActivity {
         ProductListAdapter adapter = new ProductListAdapter(this, productList);
         historyListView.setAdapter(adapter);
     }
+
     private void setupNavigationBarClicks(ImageButton scanButton,ImageButton listButton) {
+
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +71,7 @@ public class HistoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         listButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,6 +83,7 @@ public class HistoryActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
     // ProductData class to hold parsed product information
